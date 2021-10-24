@@ -7,6 +7,7 @@ import { sphericalDistance } from '../utils/sphericalDistance'
 import styles from '../styles/Home.module.css'
 import MyStationsContext from '../context/my-stations-context'
 import { ConnectionData } from '../typings'
+import Connections from '../components/connections'
 
 const Home: NextPage = () => {
 
@@ -48,7 +49,7 @@ const Home: NextPage = () => {
           <p>Location Longitude: {position.coords.longitude}</p>
           <p>From: {from}</p>
           <p>To: {to}</p>
-          <p>{JSON.stringify(connectionData)}</p>
+          {connectionData && <Connections connectionData={connectionData} />}
         </div>
       )}
     </div>
