@@ -1,19 +1,22 @@
 import { Departure } from '../typings'
+import styles from './departure-item.module.css'
 
 type Props = {
+  station: string
   departure: Departure
 }
 
-const DepartureItem = ({ departure }: Props) => {
+const DepartureItem = ({ station, departure }: Props) => {
 
-  const depTime = new Date(+departure.time * 1000).toLocaleTimeString('nl-BE')
-  const depStation = departure.station
+  const depStation = station
+  const depTime = new Date(+departure.time * 1000).toLocaleTimeString('nl-BE').substring(0,5)
   const depPlatform = departure.platform
   const depDirection = departure.direction.name
+  const depDelay = departure.delay
 
   return (
-    <div>
-      {`${depTime} vertrek in ${depStation} op spoor ${depPlatform} richting ${depDirection} `}
+    <div className={styles.departure}>
+      {`${depTime} +${depDelay}' vertrek in ${depStation} op spoor ${depPlatform} richting ${depDirection} `}
     </div>
   )
 }

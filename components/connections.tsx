@@ -1,5 +1,6 @@
 import { ConnectionData } from '../typings'
 import ConnectionItem from './connection-item'
+import styles from './connections.module.css'
 
 type Props = {
   connectionData: ConnectionData
@@ -7,8 +8,7 @@ type Props = {
 
 const Connections = ({ connectionData }: Props) => {
   return (
-    <div>
-      <h2>Connections</h2>
+    <div className={styles.connections}>
       <ul>
         {connectionData.connection.map(connection => <ConnectionItem key={connection.id} connection={connection} />)}
       </ul>

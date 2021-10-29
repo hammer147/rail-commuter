@@ -8,6 +8,7 @@ import styles from '../styles/Home.module.css'
 import MyStationsContext from '../context/my-stations-context'
 import { ConnectionData } from '../typings'
 import Connections from '../components/connections'
+import {FaArrowRight} from 'react-icons/fa'
 
 const Home: NextPage = () => {
 
@@ -44,11 +45,10 @@ const Home: NextPage = () => {
     <div>
       {position && (
         <div>
-          <p>Location at: {new Date(position.timestamp).toLocaleTimeString('nl-BE')}</p>
+          {/* <p>Location at: {new Date(position.timestamp).toLocaleTimeString('nl-BE')}</p>
           <p>Location Latitude: {position.coords.latitude}</p>
-          <p>Location Longitude: {position.coords.longitude}</p>
-          <p>From: {from}</p>
-          <p>To: {to}</p>
+          <p>Location Longitude: {position.coords.longitude}</p> */}
+          <h2>{from} <FaArrowRight/> {to}</h2>
           {connectionData && <Connections connectionData={connectionData} />}
         </div>
       )}

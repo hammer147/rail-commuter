@@ -1,0 +1,10 @@
+.connections ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.connections ul li {
+  /* background: #cce5ff; */
+  margin-bottom: 1rem;
+}
