@@ -2,6 +2,8 @@ import { ChangeEventHandler, MouseEventHandler, useContext, useEffect, useState 
 import { Stationinfo } from '../typings'
 import MyStationsContext from '../context/my-stations-context'
 import { NextPage } from 'next'
+import styles from './settings.module.css'
+import Link from 'next/link'
 
 const Settings: NextPage = () => {
 
@@ -31,18 +33,25 @@ const Settings: NextPage = () => {
   }
 
   return (
-    <>
-      <p>Home Station: {homeStation && homeStation.standardname}</p>
-      <p>Work Station: {workStation && workStation.standardname}</p>
+    <div className={styles.settings}>
+      <Link href="/">
+        <a>
+          <div className={styles.link}>Terug naar Beginpagina</div>
+        </a>
+      </Link>
+      <div className={styles.current}>
+        <h3>Thuis Station: {homeStation && homeStation.standardname}</h3>
+        <h3>Werk Station: {workStation && workStation.standardname}</h3>
+      </div>
       <form>
-        <p>Set Station</p>
+        <div>Wijzig Station</div>
         <div>
           <input
             type="radio"
             value="Home"
             checked={stationToChange === 'Home'}
             onChange={handleChange}
-          /> Home
+          /> Thuis
         </div>
         <div>
           <input
@@ -50,15 +59,14 @@ const Settings: NextPage = () => {
             value="Work"
             checked={stationToChange === 'Work'}
             onChange={handleChange}
-          /> Work
+          /> Werk
         </div>
-        <p>station to change: {stationToChange}</p>
         <input type="search" name="search" id="search" value={stationName} onChange={e => setStationName(e.target.value)} />
         <ul>
-          {stations.filter(station => station.standardname.toLowerCase().includes(stationName.toLowerCase())).map(station => <li key={station.id} onClick={() => handleSelectedStation(station) }>{station.standardname}</li>)}
+          {stations.filter(station => station.standardname.toLowerCase().includes(stationName.toLowerCase())).map(station => <li key={station.id} onClick={() => handleSelectedStation(station)}>{station.standardname}</li>)}
         </ul>
       </form>
-    </>
+    </div>
   )
 }
 

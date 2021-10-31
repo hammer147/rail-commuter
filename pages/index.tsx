@@ -7,8 +7,10 @@ import { sphericalDistance } from '../utils/sphericalDistance'
 import MyStationsContext from '../context/my-stations-context'
 import { ConnectionData } from '../typings'
 import Connections from '../components/connections'
-import {FaArrowRight} from 'react-icons/fa'
+import { FaArrowRight } from 'react-icons/fa'
 import styles from './index.module.css'
+import Link from 'next/link'
+import trainPic from '../public/images/train.png'
 
 const Home: NextPage = () => {
 
@@ -48,7 +50,17 @@ const Home: NextPage = () => {
           {/* <p>Location at: {new Date(position.timestamp).toLocaleTimeString('nl-BE')}</p>
           <p>Location Latitude: {position.coords.latitude}</p>
           <p>Location Longitude: {position.coords.longitude}</p> */}
-          <div className={styles.title}>{from} <FaArrowRight/> {to}</div>
+          <Link href="/settings">
+            <a>
+              <div className={styles.title}>
+                {/* {from} <FaArrowRight /> {to} */}
+                <div>{from}</div>
+                <Image src={trainPic} alt="train" width={120} height={64}/>
+                <div>{to}</div>
+              </div>
+            </a>
+          </Link>
+
           {connectionData && <Connections connectionData={connectionData} />}
         </div>
       )}
