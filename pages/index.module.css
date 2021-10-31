@@ -1,0 +1,9 @@
+.title{
+  background-color: rgb(14, 101, 97);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}

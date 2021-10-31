@@ -9,9 +9,7 @@ type Props = {
 const Connections = ({ connectionData }: Props) => {
   return (
     <div className={styles.connections}>
-      <ul>
-        {connectionData.connection.map(connection => <ConnectionItem key={connection.id} connection={connection} />)}
-      </ul>
+      {connectionData.connection.map(connection => <ConnectionItem key={connection.id} connection={connection} />)}
     </div>
   )
 }

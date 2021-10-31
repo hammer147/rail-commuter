@@ -9,13 +9,15 @@ type Props = {
 const ArrivalItem = ({ station, arrival }: Props) => {
 
   const arrStation = station
-  const arrTime = new Date(+arrival.time * 1000).toLocaleTimeString('nl-BE').substring(0,5)
+  const arrTime = new Date(+arrival.time * 1000).toLocaleTimeString('nl-BE').substring(0, 5)
   const arrPlatform = arrival.platform
   const arrDelay = arrival.delay
 
   return (
     <div className={styles.arrival}>
-      {`${arrTime} +${arrDelay}' aankomst in ${arrStation} op spoor ${arrPlatform}`}
+      <span style={{ fontWeight: 'bold' }}>{`${arrTime} `}</span>
+      <span style={+arrDelay ? { color: 'red', fontWeight: 'bold', backgroundColor: 'yellow' } : {}}>{`+${+arrDelay / 60}'`}</span>
+      <span>{` aankomst in ${arrStation} op spoor ${arrPlatform}`}</span>
     </div>
   )
 }

@@ -13,12 +13,12 @@ type Props = {
 const ConnectionItem = ({ connection }: Props) => {
 
   const duration = connection.duration
-  // const depTime = new Date(+connection.departure.time * 1000).toLocaleTimeString('nl-BE')
-  // const arrTime = new Date(+connection.arrival.time * 1000).toLocaleTimeString('nl-BE')
+  const depTime = new Date(+connection.departure.time * 1000).toLocaleTimeString('nl-BE').substring(0,5)
+  const arrTime = new Date(+connection.arrival.time * 1000).toLocaleTimeString('nl-BE').substring(0,5)
 
   return (
-    <li>
-      <h3><FaTrain /> {`Totale reistijd: ${convertMinsToHrsMins(+duration / 60)}`}</h3>
+    <div className={styles.connection}>
+      <h3 className={styles.connectionTitle}><FaTrain /> {`${depTime} Totale Reistijd: ${convertMinsToHrsMins(+duration / 60)}`}</h3>
 
       <DepartureItem station={connection.departure.station} departure={connection.departure} />
 
@@ -31,7 +31,7 @@ const ConnectionItem = ({ connection }: Props) => {
 
       <ArrivalItem station={connection.arrival.station} arrival={connection.arrival} />
 
-    </li>
+    </div>
   )
 }
 

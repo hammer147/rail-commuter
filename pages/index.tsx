@@ -4,11 +4,11 @@ import Image from 'next/image'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import useGeolocation from '../hooks/useGeolocation'
 import { sphericalDistance } from '../utils/sphericalDistance'
-import styles from '../styles/Home.module.css'
 import MyStationsContext from '../context/my-stations-context'
 import { ConnectionData } from '../typings'
 import Connections from '../components/connections'
 import {FaArrowRight} from 'react-icons/fa'
+import styles from './index.module.css'
 
 const Home: NextPage = () => {
 
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
           {/* <p>Location at: {new Date(position.timestamp).toLocaleTimeString('nl-BE')}</p>
           <p>Location Latitude: {position.coords.latitude}</p>
           <p>Location Longitude: {position.coords.longitude}</p> */}
-          <h2>{from} <FaArrowRight/> {to}</h2>
+          <div className={styles.title}>{from} <FaArrowRight/> {to}</div>
           {connectionData && <Connections connectionData={connectionData} />}
         </div>
       )}
