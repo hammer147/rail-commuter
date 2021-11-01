@@ -4,12 +4,14 @@ import MyStationsContext from '../context/my-stations-context'
 import { NextPage } from 'next'
 import styles from './settings.module.css'
 import Link from 'next/link'
+import trainPic from '../public/images/train.png'
+import Image from 'next/image'
 
 const Settings: NextPage = () => {
 
   const [stations, setStations] = useState<Stationinfo[]>([])
   const [stationName, setStationName] = useState('')
-  const [stationToChange, setStationToChange] = useState('Home')
+  const [stationToChange, setStationToChange] = useState('')
 
   const { homeStation, setHomeStation, workStation, setWorkStation } = useContext(MyStationsContext)
 
@@ -30,42 +32,36 @@ const Settings: NextPage = () => {
     } else {
       setWorkStation(station)
     }
+    setStationName('')
+    setStationToChange('')
   }
 
   return (
     <div className={styles.settings}>
-      <Link href="/">
-        <a>
-          <div className={styles.link}>Terug naar Beginpagina</div>
-        </a>
-      </Link>
-      <div className={styles.current}>
-        <h3>Thuis Station: {homeStation && homeStation.standardname}</h3>
-        <h3>Werk Station: {workStation && workStation.standardname}</h3>
+
+
+      <div className={styles.myStations}>
+        <h3 onClick={() => setStationToChange('Home')}>Thuis: {homeStation && homeStation.standardname}</h3>
+        <Link href="/">
+          <a className={styles.link}>
+            <Image src={trainPic} alt="train" width={120} height={64} />
+          </a>
+        </Link>
+        <h3 onClick={() => setStationToChange('Work')}>Werk: {workStation && workStation.standardname}</h3>
       </div>
-      <form>
-        <div>Wijzig Station</div>
-        <div>
-          <input
-            type="radio"
-            value="Home"
-            checked={stationToChange === 'Home'}
-            onChange={handleChange}
-          /> Thuis
-        </div>
-        <div>
-          <input
-            type="radio"
-            value="Work"
-            checked={stationToChange === 'Work'}
-            onChange={handleChange}
-          /> Werk
-        </div>
-        <input type="search" name="search" id="search" value={stationName} onChange={e => setStationName(e.target.value)} />
-        <ul>
-          {stations.filter(station => station.standardname.toLowerCase().includes(stationName.toLowerCase())).map(station => <li key={station.id} onClick={() => handleSelectedStation(station)}>{station.standardname}</li>)}
-        </ul>
-      </form>
+
+      {stationToChange && (
+        <form>
+          <div className={styles.formControl}>
+            <span>Wijzig {stationToChange === 'Home' ? 'Thuis' : 'Werk'} </span>
+            <input type="search" name="search" id="search" value={stationName} onChange={e => setStationName(e.target.value)} />
+          </div>
+          <ul>
+            {stations.filter(station => station.standardname.toLowerCase().includes(stationName.toLowerCase())).map(station => <li key={station.id} onClick={() => handleSelectedStation(station)}>{station.standardname}</li>)}
+          </ul>
+        </form>
+      )}
+
     </div>
   )
 }
