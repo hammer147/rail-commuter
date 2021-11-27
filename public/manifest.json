@@ -4,8 +4,8 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "rail-commuter",
-    "short_name": "rail-commuter",
+    "name": "Rail Commuter NMBS",
+    "short_name": "Rail Commuter",
     "description": "train connections based on geolocation",
     "icons": [
         {
